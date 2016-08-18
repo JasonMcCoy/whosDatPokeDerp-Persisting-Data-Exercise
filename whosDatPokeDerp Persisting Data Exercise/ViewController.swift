@@ -19,11 +19,17 @@ class ViewController: UIViewController {
         
         pokemonLblTxt.text = lblTxt[0]
         
+        UserDefaults.standard.setValue("Bulbasaur", forKey: "pokemon")
+        UserDefaults.standard.synchronize()
+        
     }
     
     @IBAction func charmanderBtn(_ sender: AnyObject) {
         
         pokemonLblTxt.text = lblTxt[1]
+        
+        UserDefaults.standard.setValue("Charmander", forKey: "pokemon")
+        UserDefaults.standard.synchronize()
         
     }
     
@@ -31,10 +37,19 @@ class ViewController: UIViewController {
         
         pokemonLblTxt.text = lblTxt[2]
         
+        UserDefaults.standard.setValue("Squirtle", forKey: "pokemon")
+        UserDefaults.standard.synchronize()
+        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let pokemon = UserDefaults.standard.value(forKey: "pokemon") as? String {
+            pokemonLblTxt.text = "\(pokemon)"
+        } else {
+            pokemonLblTxt.text = "Tap a Pokemon to know it's name!"
+        }
     }
 
     override func didReceiveMemoryWarning() {
